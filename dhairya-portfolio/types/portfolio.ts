@@ -13,6 +13,37 @@ export interface Project {
   demoUrl: string | null;
 }
 
+export interface TechnicalProject {
+  id: string;
+  code: string;
+  title: string;
+  description: string;
+  highlights: string[];
+  technologies: string[];
+  githubUrl: string | null;
+  featured: boolean;
+}
+
+export interface FinancialProject {
+  id: string;
+  ticker: string;
+  company: string;
+  title: string;
+  description: string;
+  analysisAreas: string[];
+  status: string;
+}
+
+export interface Certification {
+  id: string;
+  organization: string;
+  title: string;
+  issuer: string;
+  issuedDate: string;
+  description?: string;
+  credentialUrl?: string;
+}
+
 export interface CapabilityCategory {
   title: string;
   capabilities: string[];
@@ -46,6 +77,9 @@ export interface PortfolioData {
   navigation: NavigationItem[];
   capabilities: CapabilityCategory[];
   projects: Project[];
+  technicalProjects: TechnicalProject[];
+  financialProjects: FinancialProject[];
+  certifications: Certification[];
   currentlyBuilding: string[];
   education: Education[];
 }
