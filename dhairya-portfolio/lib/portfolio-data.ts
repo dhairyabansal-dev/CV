@@ -76,9 +76,15 @@ export const portfolioData: PortfolioData = {
     {
       name: "Ethereum Tracker",
       ticker: "ETH",
-      description: "",
-      highlights: [],
-      technologies: [],
+      description:
+        "A blockchain analytics project focused on exploring Ethereum transaction data and understanding on-chain activity through APIs and structured data workflows.",
+      highlights: [
+        "Ethereum transaction tracking",
+        "Blockchain analytics",
+        "API integration",
+        "On-chain data analysis",
+      ],
+      technologies: ["Ethereum", "Blockchain APIs", "Python", "Data Analysis"],
       githubUrl: "https://github.com/dhairyabansal01-bit/Ethereum-Tracker",
       demoUrl: null,
     },
@@ -184,9 +190,15 @@ export const portfolioData: PortfolioData = {
       id: "ethereum-tracker",
       code: "ETH",
       title: "Ethereum Tracker",
-      description: "",
-      highlights: [],
-      technologies: [],
+      description:
+        "A blockchain analytics project focused on exploring Ethereum transaction data and understanding on-chain activity through APIs and structured data workflows.",
+      highlights: [
+        "Ethereum transaction tracking",
+        "Blockchain analytics",
+        "API integration",
+        "On-chain data analysis",
+      ],
+      technologies: ["Ethereum", "Blockchain APIs", "Python", "Data Analysis"],
       githubUrl: "https://github.com/dhairyabansal01-bit/Ethereum-Tracker",
       featured: false,
     },
