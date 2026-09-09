@@ -4,7 +4,7 @@ import { portfolioData } from "@/lib/portfolio-data";
 
 export function CurrentlyBuilding() {
 	return (
-		<section id="building" className="section">
+		<section id="currently-building" className="section">
 			<Container>
 				<SectionHeading
 					eyebrow="Currently Building"
