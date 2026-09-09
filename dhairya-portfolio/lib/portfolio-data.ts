@@ -12,7 +12,7 @@ export const portfolioData: PortfolioData = {
   contact: {
     email: "dhairyabansal090@gmail.com",
     phone: "9455198168",
-    github: "https://github.com/dhairyabansal01-bit",
+    github: "https://github.com/dhairyabansal-dev",
     linkedin: "https://www.linkedin.com/in/dhairya-bansal-9044b9358/",
   },
   navigation: [
@@ -70,7 +70,7 @@ export const portfolioData: PortfolioData = {
         "Local-first architecture",
       ],
       technologies: ["AI / LLM", "Python", "Scheduling", "Local-first"],
-      githubUrl: null,
+      githubUrl: "https://github.com/dhairyabansal-dev/Roy---OS",
       demoUrl: null,
     },
     {
@@ -85,7 +85,7 @@ export const portfolioData: PortfolioData = {
         "On-chain data analysis",
       ],
       technologies: ["Ethereum", "Blockchain APIs", "Python", "Data Analysis"],
-      githubUrl: "https://github.com/dhairyabansal01-bit/Ethereum-Tracker",
+      githubUrl: "https://github.com/dhairyabansal-dev/Ethereum-Tracker",
       demoUrl: null,
     },
     {
@@ -95,7 +95,7 @@ export const portfolioData: PortfolioData = {
         "A quantitative finance engine that uses Monte Carlo simulation to model probabilistic financial outcomes and support risk analysis.",
       highlights: ["Python", "Probability", "Simulation", "Financial risk"],
       technologies: ["Python", "Monte Carlo", "Risk Modelling"],
-      githubUrl: "https://github.com/dhairyabansal01-bit/Monte-Carlo-Risk",
+      githubUrl: "https://github.com/dhairyabansal-dev/Monte-Carlo-Risk",
       demoUrl: null,
     },
     {
@@ -109,7 +109,7 @@ export const portfolioData: PortfolioData = {
         "Mathematical modelling",
       ],
       technologies: ["Python", "Options Pricing", "Quant Finance"],
-      githubUrl: "https://github.com/dhairyabansal01-bit/Black-School-Model",
+      githubUrl: "https://github.com/dhairyabansal-dev/Black-School-Model",
       demoUrl: null,
     },
     {
@@ -123,7 +123,7 @@ export const portfolioData: PortfolioData = {
         "Data-driven logic",
       ],
       technologies: ["FinTech", "Decision Systems"],
-      githubUrl: "https://github.com/dhairyabansal01-bit/Credify",
+      githubUrl: "https://github.com/dhairyabansal-dev/Credify",
       demoUrl: null,
     },
   ],
@@ -142,7 +142,7 @@ export const portfolioData: PortfolioData = {
         "Local-first architecture",
       ],
       technologies: ["AI / LLM", "Python", "Scheduling", "Local-first"],
-      githubUrl: null,
+      githubUrl: "https://github.com/dhairyabansal-dev/Roy---OS",
       featured: true,
     },
     {
@@ -153,7 +153,7 @@ export const portfolioData: PortfolioData = {
         "A quantitative finance engine that uses Monte Carlo simulation to model probabilistic financial outcomes and support risk analysis.",
       highlights: ["Python", "Probability", "Simulation", "Financial risk"],
       technologies: ["Python", "Monte Carlo", "Risk Modelling"],
-      githubUrl: "https://github.com/dhairyabansal01-bit/Monte-Carlo-Risk",
+      githubUrl: "https://github.com/dhairyabansal-dev/Monte-Carlo-Risk",
       featured: true,
     },
     {
@@ -168,7 +168,7 @@ export const portfolioData: PortfolioData = {
         "Data-driven logic",
       ],
       technologies: ["FinTech", "Decision Systems"],
-      githubUrl: "https://github.com/dhairyabansal01-bit/Credify",
+      githubUrl: "https://github.com/dhairyabansal-dev/Credify",
       featured: true,
     },
     {
@@ -183,7 +183,7 @@ export const portfolioData: PortfolioData = {
         "Mathematical modelling",
       ],
       technologies: ["Python", "Options Pricing", "Quant Finance"],
-      githubUrl: "https://github.com/dhairyabansal01-bit/Black-School-Model",
+      githubUrl: "https://github.com/dhairyabansal-dev/Black-School-Model",
       featured: true,
     },
     {
@@ -199,7 +199,7 @@ export const portfolioData: PortfolioData = {
         "On-chain data analysis",
       ],
       technologies: ["Ethereum", "Blockchain APIs", "Python", "Data Analysis"],
-      githubUrl: "https://github.com/dhairyabansal01-bit/Ethereum-Tracker",
+      githubUrl: "https://github.com/dhairyabansal-dev/Ethereum-Tracker",
       featured: false,
     },
     {
@@ -209,7 +209,7 @@ export const portfolioData: PortfolioData = {
       description: "",
       highlights: [],
       technologies: [],
-      githubUrl: "https://github.com/dhairyabansal01-bit/Chatbot-1",
+      githubUrl: "https://github.com/dhairyabansal-dev/Chatbot-1",
       featured: false,
     },
   ],
