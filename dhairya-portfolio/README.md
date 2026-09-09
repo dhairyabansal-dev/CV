@@ -1,5 +1,30 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## GitHub-driven projects
+
+Public, non-fork repositories under `dhairyabansal-dev` are pulled live from
+the GitHub REST API and shown in the Projects and Build Log sections —
+`lib/github.ts` is the whole data layer. Publish a new public repo and it
+shows up here on its own, no edit to `portfolio-data.ts` required.
+
+- **Classification** (`lib/project-classification.ts`): optional per-repo
+  overrides for ticker, title, category, priority, and featured/hidden
+  state, keyed by repo name. A repo with no entry still shows up, with a
+  ticker/category generated from its name and primary language.
+- **Caching**: fetches are cached for 30 minutes via Next's `fetch`
+  `next.revalidate`, so GitHub changes show up automatically without a
+  redeploy, without hitting the API on every page load.
+- **Fallback**: if GitHub is unreachable, the Projects/Build Log sections
+  fall back to a small static project list (`fallbackProjects` in
+  `lib/project-classification.ts`) instead of going blank.
+- **Project pages**: `/projects/[repo]` renders a repo's README (via
+  `react-markdown` + `remark-gfm`, no raw HTML — same sanitization
+  guarantees either way) plus metadata, topics, and links.
+- **Auth**: works unauthenticated (60 req/hr shared GitHub limit). Set
+  `GITHUB_TOKEN` (see `.env.example`) to raise that to 5,000/hr — never
+  required, never exposed to the client, never returns private repos
+  regardless of token scope.
+
 ## Getting Started
 
 First, run the development server:
