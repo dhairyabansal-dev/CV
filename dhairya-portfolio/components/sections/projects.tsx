@@ -15,16 +15,17 @@ export function Projects() {
 					{portfolioData.projects.map((project, index) => (
 						<article
 							key={project.ticker}
-							className="group flex min-h-full flex-col bg-[var(--background)] p-6 transition-colors hover:bg-[var(--panel)] sm:p-8"
+							className="project-card group flex min-h-full flex-col bg-[var(--background)] p-6 transition-[background-color,border-color,transform] hover:bg-[var(--panel)] sm:p-8"
 						>
 							<header className="flex items-start justify-between gap-4 border-b border-[var(--border)] pb-5">
 								<div>
-									<p className="terminal-text">${project.ticker}</p>
+									<p className="project-card__ticker terminal-text">${project.ticker}</p>
 									<h3 className="mt-3 text-xl font-semibold tracking-tight text-[var(--foreground)]">
 										{project.name}
 									</h3>
 								</div>
-								<span className="font-mono text-xs text-[var(--muted)]">
+								<span className="project-card__status flex items-center gap-2 font-mono text-xs text-[var(--muted)]">
+									<span aria-hidden="true">●</span>
 									{String(index + 1).padStart(2, "0")}
 								</span>
 							</header>
@@ -63,22 +64,30 @@ export function Projects() {
 								</div>
 							</div>
 
-							<footer className="mt-auto pt-8">
-								{project.repositoryUrl ? (
-									<a
-										className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-[var(--accent)] transition-colors hover:text-[var(--accent-strong)]"
-										href={project.repositoryUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										View Source -&gt;
-									</a>
-								) : (
-									<p className="font-mono text-xs uppercase tracking-[0.08em] text-[var(--muted)]">
-										Source link: not configured
-									</p>
-								)}
-							</footer>
+							{project.githubUrl || project.demoUrl ? (
+								<footer className="project-card__action mt-auto flex flex-wrap gap-4 pt-8">
+									{project.githubUrl ? (
+										<a
+											className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-[var(--accent)] transition-colors hover:text-[var(--accent-strong)]"
+											href={project.githubUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											View Source -&gt;
+										</a>
+									) : null}
+									{project.demoUrl ? (
+										<a
+											className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-[var(--accent)] transition-colors hover:text-[var(--accent-strong)]"
+											href={project.demoUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											Live Demo -&gt;
+										</a>
+									) : null}
+								</footer>
+							) : null}
 						</article>
 					))}
 				</div>

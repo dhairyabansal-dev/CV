@@ -8,20 +8,37 @@ import { Education } from "@/components/sections/education";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
+import { Reveal } from "@/components/ui/reveal";
 
 export default function Home() {
   return (
     <>
       <Navigation />
       <main>
-        <Hero />
-        <About />
-        <Capabilities />
-        <Projects />
-        <CurrentlyBuilding />
-        <Education />
-        <BuildLog />
-        <Contact />
+        <Reveal>
+          <Hero />
+        </Reveal>
+        <Reveal>
+          <About />
+        </Reveal>
+        <Reveal>
+          <Capabilities />
+        </Reveal>
+        <Reveal>
+          <Projects />
+        </Reveal>
+        <Reveal>
+          <CurrentlyBuilding />
+        </Reveal>
+        <Reveal>
+          <Education />
+        </Reveal>
+        <Reveal>
+          <BuildLog />
+        </Reveal>
+        <Reveal>
+          <Contact />
+        </Reveal>
       </main>
       <Footer />
     </>

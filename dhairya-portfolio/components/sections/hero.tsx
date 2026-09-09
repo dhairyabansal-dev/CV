@@ -24,24 +24,24 @@ export function Hero() {
     >
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)] lg:gap-20">
-          <div>
-            <p className="terminal-text">dhairya_bansal / systems.log</p>
+          <div className="hero__content">
+            <p className="terminal-text hero__label">dhairya_bansal / systems.log</p>
             <h1
-              className="mt-5 max-w-3xl text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl lg:text-7xl"
+              className="hero__title mt-5 max-w-3xl text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl lg:text-7xl"
               id="hero-title"
             >
               {owner.name}
             </h1>
-            <p className="mt-5 font-mono text-sm font-medium uppercase tracking-[0.08em] text-[var(--accent)] sm:text-base">
+            <p className="hero__title hero__title--delay mt-5 font-mono text-sm font-medium uppercase tracking-[0.08em] text-[var(--accent)] sm:text-base">
               {owner.title}
             </p>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-[var(--foreground)] sm:text-xl">
+            <p className="hero__copy mt-8 max-w-2xl text-lg leading-8 text-[var(--foreground)] sm:text-xl">
               {owner.heroDescription}
             </p>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--muted)]">
+            <p className="hero__copy hero__copy--delay mt-4 max-w-2xl text-base leading-7 text-[var(--muted)]">
               {owner.supportingDescription}
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="hero__actions mt-9 flex flex-wrap gap-3">
               <Button href="#projects">Explore Projects</Button>
               <Button href={contact.github} variant="secondary">
                 GitHub
@@ -50,7 +50,7 @@ export function Hero() {
           </div>
           <aside
             aria-label="Portfolio system concepts"
-            className="border border-[var(--border)] bg-[var(--panel)] p-5 sm:p-6"
+          className="hero__modules border border-[var(--border)] bg-[var(--panel)] p-5 sm:p-6"
           >
             <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
               <p className="terminal-text">system modules</p>
@@ -61,7 +61,7 @@ export function Hero() {
             <ul className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
               {systemCommands.map((command) => (
                 <li
-                  className="border border-[var(--border)] px-3 py-2 font-mono text-xs tracking-wide text-[var(--foreground)]"
+                  className="hero__module border border-[var(--border)] px-3 py-2 font-mono text-xs tracking-wide text-[var(--foreground)]"
                   key={command}
                 >
                   {command}

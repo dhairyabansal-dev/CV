@@ -70,7 +70,8 @@ export const portfolioData: PortfolioData = {
         "Local-first architecture",
       ],
       technologies: ["AI / LLM", "Python", "Scheduling", "Local-first"],
-      repositoryUrl: null,
+      githubUrl: null,
+      demoUrl: null,
     },
     {
       name: "Blockchain Forensics",
@@ -84,7 +85,8 @@ export const portfolioData: PortfolioData = {
         "Transaction analysis",
       ],
       technologies: ["Blockchain", "APIs", "Data Systems"],
-      repositoryUrl: null,
+      githubUrl: null,
+      demoUrl: null,
     },
     {
       name: "Monte Carlo Risk Engine",
@@ -93,7 +95,8 @@ export const portfolioData: PortfolioData = {
         "A quantitative finance engine that uses Monte Carlo simulation to model probabilistic financial outcomes and support risk analysis.",
       highlights: ["Python", "Probability", "Simulation", "Financial risk"],
       technologies: ["Python", "Monte Carlo", "Risk Modelling"],
-      repositoryUrl: null,
+      githubUrl: null,
+      demoUrl: null,
     },
     {
       name: "Black-Scholes-Merton Model",
@@ -106,7 +109,8 @@ export const portfolioData: PortfolioData = {
         "Mathematical modelling",
       ],
       technologies: ["Python", "Options Pricing", "Quant Finance"],
-      repositoryUrl: null,
+      githubUrl: null,
+      demoUrl: null,
     },
     {
       name: "CrediFy",
@@ -119,7 +123,8 @@ export const portfolioData: PortfolioData = {
         "Data-driven logic",
       ],
       technologies: ["FinTech", "Decision Systems"],
-      repositoryUrl: null,
+      githubUrl: null,
+      demoUrl: null,
     },
   ],
   currentlyBuilding: [

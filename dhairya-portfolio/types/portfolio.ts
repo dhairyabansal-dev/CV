@@ -9,7 +9,8 @@ export interface Project {
   description: string;
   highlights: string[];
   technologies: string[];
-  repositoryUrl: string | null;
+  githubUrl: string | null;
+  demoUrl: string | null;
 }
 
 export interface CapabilityCategory {
