@@ -3,17 +3,17 @@ import type { PortfolioData } from "@/types/portfolio";
 export const portfolioData: PortfolioData = {
   owner: {
     name: "Dhairya Bansal",
-    title: "FinTech & Quant Systems Builder",
+    title: "Hybrid Finance & Technology Builder",
     heroDescription:
-      "I build systems at the intersection of finance, quantitative analysis, and software engineering.",
+      "I work at the intersection of finance, quantitative analysis, and technology — combining financial modelling and valuation with data, AI, and software systems.",
     supportingDescription:
-      "From quantitative financial models and market analytics to AI-powered applications and backend systems, I learn by building and work through complex problems independently.",
+      "From DCF and equity valuation to quantitative models, market analytics, and AI-powered applications, I learn by building across both finance and technology.",
   },
   contact: {
     email: "dhairyabansal090@gmail.com",
     phone: "9455198168",
     github: "https://github.com/dhairyabansal-dev",
-    linkedin: "https://www.linkedin.com/in/dhairya-bansal-9044b9358/",
+    linkedin: "https://www.linkedin.com/in/dhairya-bansal090/",
   },
   navigation: [
     { label: "Capabilities", href: "#capabilities" },
