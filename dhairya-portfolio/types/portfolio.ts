@@ -32,6 +32,7 @@ export interface FinancialProject {
   description: string;
   analysisAreas: string[];
   status: string;
+  linkedinUrl?: string;
 }
 
 export interface Certification {
