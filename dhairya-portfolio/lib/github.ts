@@ -5,6 +5,9 @@ import { fallbackProjects, findClassification } from "@/lib/project-classificati
 const GITHUB_USERNAME = "dhairyabansal-dev";
 const GITHUB_API_BASE = "https://api.github.com";
 
+// Repositories that should never be surfaced by the portfolio's live GitHub feed.
+const EXCLUDED_REPOSITORIES = new Set(["forecast-"]);
+
 /**
  * How long GitHub data is cached before Next.js revalidates it in the
  * background. GitHub changes should show up on the portfolio without a
@@ -154,6 +157,7 @@ export const getPortfolioProjects = cache(
     }
 
     const visible = result.repos.filter((repo) => {
+      if (EXCLUDED_REPOSITORIES.has(repo.name.trim().toLowerCase())) return false;
       if (repo.fork || repo.private) return false;
       const classification = findClassification(repo.name);
       if (classification?.hidden) return false;
