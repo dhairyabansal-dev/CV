@@ -11,6 +11,7 @@ export function Navigation() {
     const sectionIds = [
       "home",
       ...portfolioData.navigation.map((item) => item.href.slice(1)),
+      "selected-work",
     ];
     const sections = sectionIds
       .map((sectionId) => document.getElementById(sectionId))
@@ -51,28 +52,38 @@ export function Navigation() {
           aria-label="Primary navigation"
           className="flex min-w-0 flex-1 items-center gap-5 overflow-x-auto font-mono text-[0.7rem] font-medium uppercase tracking-[0.08em] text-[var(--muted)] sm:justify-center"
         >
-          {portfolioData.navigation.map((item) => (
-            (() => {
-              const sectionId = item.href.slice(1);
-              const isActive = activeSection === sectionId;
+          {portfolioData.navigation.map((item) => {
+            const sectionId = item.href.slice(1);
+            const isActive = activeSection === sectionId;
 
-              return (
-            <a
-              aria-current={isActive ? "location" : undefined}
-              className={[
-                "navigation-link shrink-0 transition-colors hover:text-[var(--accent)] focus-visible:text-[var(--accent)]",
-                isActive ? "navigation-link--active" : "",
-              ]
-                .filter(Boolean)
-                .join(" ")}
-              href={item.href}
-              key={item.href}
-            >
-              {item.label}
-            </a>
-              );
-            })()
-          ))}
+            return (
+              <a
+                aria-current={isActive ? "location" : undefined}
+                className={[
+                  "navigation-link shrink-0 transition-colors hover:text-[var(--accent)] focus-visible:text-[var(--accent)]",
+                  isActive ? "navigation-link--active" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+                href={item.href}
+                key={item.href}
+              >
+                {item.label}
+              </a>
+            );
+          })}
+          <a
+            aria-current={activeSection === "selected-work" ? "location" : undefined}
+            className={[
+              "navigation-link shrink-0 transition-colors hover:text-[var(--accent)] focus-visible:text-[var(--accent)]",
+              activeSection === "selected-work" ? "navigation-link--active" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            href="#selected-work"
+          >
+            Selected Work
+          </a>
         </nav>
         <a
           className="shrink-0 font-mono text-[0.7rem] font-medium uppercase tracking-[0.08em] text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"

@@ -1,6 +1,7 @@
 import { About } from "@/components/sections/about";
 import { BuildLog } from "@/components/sections/build-log";
 import { Capabilities } from "@/components/sections/capabilities";
+import { CaseStudies } from "@/components/sections/case-studies";
 import { Contact } from "@/components/sections/contact";
 import { Navigation } from "@/components/layout/navigation";
 import { CurrentlyBuilding } from "@/components/sections/currently-building";
@@ -26,6 +27,9 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <Projects />
+        </Reveal>
+        <Reveal>
+          <CaseStudies />
         </Reveal>
         <Reveal>
           <CurrentlyBuilding />
