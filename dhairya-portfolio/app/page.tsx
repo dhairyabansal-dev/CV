@@ -5,6 +5,7 @@ import { Contact } from "@/components/sections/contact";
 import { Navigation } from "@/components/layout/navigation";
 import { CurrentlyBuilding } from "@/components/sections/currently-building";
 import { Education } from "@/components/sections/education";
+import { FinancialResearch } from "@/components/sections/financial-research";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
 import { Projects } from "@/components/sections/projects";
@@ -23,6 +24,9 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <Capabilities />
+        </Reveal>
+        <Reveal>
+          <FinancialResearch />
         </Reveal>
         <Reveal>
           <Projects />
