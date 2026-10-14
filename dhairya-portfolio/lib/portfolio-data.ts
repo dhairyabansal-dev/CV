@@ -7,7 +7,7 @@ export const portfolioData: PortfolioData = {
     heroDescription:
       "I work at the intersection of finance, quantitative analysis, and technology — combining financial modelling and valuation with data, AI, and software systems.",
     supportingDescription:
-      "From DCF and equity valuation to quantitative models, market analytics, and AI-powered applications, I learn by building across both finance and technology.",
+      "My finance work includes manually built Excel forecasts, revenue and profitability modelling, DCF valuation, and written research reports — alongside quantitative models, market analytics, and software systems.",
   },
   contact: {
     email: "dhairyabansal090@gmail.com",
@@ -17,13 +17,14 @@ export const portfolioData: PortfolioData = {
   },
   navigation: [
     { label: "Capabilities", href: "#capabilities" },
+    { label: "Financial Research", href: "#financial-research" },
     { label: "Projects", href: "#projects" },
     { label: "Building", href: "#currently-building" },
     { label: "Education", href: "#education" },
     { label: "Contact", href: "#contact" },
   ],
   capabilities: [
-    { title: "Finance & Quant", capabilities: ["Financial Modelling", "Monte Carlo Simulation", "Black-Scholes Modelling", "DCF Analysis", "Market Analytics"] },
+    { title: "Finance & Quant", capabilities: ["Excel Financial Forecasting", "Revenue & Profitability Modelling", "DCF Valuation", "Financial Research Reports", "Monte Carlo Simulation", "Black-Scholes Modelling", "Market Analytics"] },
     { title: "Software Engineering", capabilities: ["Python", "Backend Systems", "APIs", "Databases", "System Design & Architecture"] },
     { title: "Data & Intelligent Systems", capabilities: ["Data Processing", "Automation", "AI / LLM Systems"] },
     { title: "FinTech & Blockchain", capabilities: ["Blockchain Analytics", "Transaction Analysis", "Financial Decision Systems"] },
@@ -44,10 +45,10 @@ export const portfolioData: PortfolioData = {
     { id: "chatbot-1", code: "AI", title: "Chatbot / AI Project", description: "", highlights: [], technologies: [], githubUrl: "https://github.com/dhairyabansal-dev/Chatbot-1", featured: false },
   ],
   financialProjects: [
-    { id: "adani-enterprises-equity-analysis", ticker: "ADANIENT", company: "Adani Enterprises", title: "Equity Analysis & Valuation", description: "", analysisAreas: ["5-year financial performance", "growth analysis", "profitability metrics", "ROE", "net margin", "debt-to-equity", "leverage analysis", "CAPM discount rate", "valuation multiples", "DCF valuation", "scenario analysis", "sensitivity analysis", "business and financial risks"], status: "", linkedinUrl: "https://www.linkedin.com/in/dhairya-bansal090/details/projects/edit/forms/411842151/" },
-    { id: "reliance-industries-valuation", ticker: "RELIANCE", company: "Reliance Industries", title: "Valuation Report", description: "", analysisAreas: ["financial statement analysis", "growth and profitability", "CAPM", "valuation multiples", "DCF valuation", "scenario analysis", "sensitivity analysis"], status: "", linkedinUrl: "https://www.linkedin.com/in/dhairya-bansal090/details/projects/edit/forms/154923312/" },
-    { id: "samsung-electronics-valuation", ticker: "005930.KS", company: "Samsung Electronics", title: "Valuation Analysis", description: "", analysisAreas: ["historical financial performance", "growth", "profitability", "ROE", "leverage", "CAPM", "DCF valuation", "sensitivity analysis"], status: "", linkedinUrl: "https://www.linkedin.com/in/dhairya-bansal090/details/projects/edit/forms/142723116/" },
-    { id: "tata-motors-equity-analysis", ticker: "TATAMOTORS", company: "Tata Motors", title: "Equity Analysis & DCF Valuation", description: "", analysisAreas: ["financial statements", "growth analysis", "profitability ratios", "CAPM", "valuation multiples", "DCF", "scenario analysis", "sensitivity analysis", "risk analysis"], status: "", linkedinUrl: "https://www.linkedin.com/in/dhairya-bansal090/details/projects/edit/forms/153776203/" },
+    { id: "adani-enterprises-equity-analysis", ticker: "ADANIENT", company: "Adani Enterprises", title: "Equity Analysis & Valuation", description: "Company-level financial research covering historical performance, profitability, leverage, valuation assumptions, and scenario-based DCF analysis.", analysisAreas: ["5-year financial performance", "growth analysis", "profitability metrics", "ROE", "net margin", "debt-to-equity", "leverage analysis", "CAPM discount rate", "valuation multiples", "DCF valuation", "scenario analysis", "sensitivity analysis", "business and financial risks"], status: "", linkedinUrl: "https://www.linkedin.com/in/dhairya-bansal090/details/projects/edit/forms/411842151/" },
+    { id: "reliance-industries-valuation", ticker: "RELIANCE", company: "Reliance Industries", title: "Valuation Report", description: "Financial statement and valuation analysis examining growth, profitability, DCF assumptions, and how different scenarios affect estimated value.", analysisAreas: ["financial statement analysis", "growth and profitability", "CAPM", "valuation multiples", "DCF valuation", "scenario analysis", "sensitivity analysis"], status: "", linkedinUrl: "https://www.linkedin.com/in/dhairya-bansal090/details/projects/edit/forms/154923312/" },
+    { id: "samsung-electronics-valuation", ticker: "005930.KS", company: "Samsung Electronics", title: "Valuation Analysis", description: "Company valuation research built around historical financial performance, profitability and leverage metrics, DCF assumptions, and sensitivity analysis.", analysisAreas: ["historical financial performance", "growth", "profitability", "ROE", "leverage", "CAPM", "DCF valuation", "sensitivity analysis"], status: "", linkedinUrl: "https://www.linkedin.com/in/dhairya-bansal090/details/projects/edit/forms/142723116/" },
+    { id: "tata-motors-equity-analysis", ticker: "TATAMOTORS", company: "Tata Motors", title: "Equity Analysis & DCF Valuation", description: "Equity analysis combining financial statement review, profitability ratios, valuation methods, and scenario-based analysis of valuation and risk.", analysisAreas: ["financial statements", "growth analysis", "profitability ratios", "CAPM", "valuation multiples", "DCF", "scenario analysis", "sensitivity analysis", "risk analysis"], status: "", linkedinUrl: "https://www.linkedin.com/in/dhairya-bansal090/details/projects/edit/forms/153776203/" },
   ],
   certifications: [
     { id: "ey-forensic-integrity-services", organization: "EY / Forage", title: "EY - Forensic and Integrity Services Job Simulation", issuer: "Forage", issuedDate: "Aug 2026" },
