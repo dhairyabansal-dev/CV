@@ -2,6 +2,7 @@ import { About } from "@/components/sections/about";
 import { BuildLog } from "@/components/sections/build-log";
 import { Capabilities } from "@/components/sections/capabilities";
 import { Contact } from "@/components/sections/contact";
+import { Certifications } from "@/components/sections/certifications";
 import { Navigation } from "@/components/layout/navigation";
 import { CurrentlyBuilding } from "@/components/sections/currently-building";
 import { Education } from "@/components/sections/education";
@@ -39,6 +40,9 @@ export default function Home() {
         </Reveal>
         <Reveal>
           <BuildLog />
+        </Reveal>
+        <Reveal>
+          <Certifications />
         </Reveal>
         <Reveal>
           <Contact />
