@@ -43,6 +43,8 @@ export interface Certification {
   issuedDate: string;
   description?: string;
   credentialUrl?: string;
+  credentialId?: string;
+  skills?: string[];
 }
 
 export interface CapabilityCategory {
