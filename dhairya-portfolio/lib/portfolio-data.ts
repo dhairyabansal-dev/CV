@@ -21,6 +21,7 @@ export const portfolioData: PortfolioData = {
     { label: "Projects", href: "#projects" },
     { label: "Building", href: "#currently-building" },
     { label: "Education", href: "#education" },
+    { label: "Certifications", href: "#certifications" },
     { label: "Contact", href: "#contact" },
   ],
   capabilities: [
@@ -51,9 +52,11 @@ export const portfolioData: PortfolioData = {
     { id: "tata-motors-equity-analysis", ticker: "TATAMOTORS", company: "Tata Motors", title: "Equity Analysis & DCF Valuation", description: "Equity analysis combining financial statement review, profitability ratios, valuation methods, and scenario-based analysis of valuation and risk.", analysisAreas: ["financial statements", "growth analysis", "profitability ratios", "CAPM", "valuation multiples", "DCF", "scenario analysis", "sensitivity analysis", "risk analysis"], status: "", linkedinUrl: "https://www.linkedin.com/in/dhairya-bansal090/details/projects/edit/forms/153776203/" },
   ],
   certifications: [
-    { id: "ey-forensic-integrity-services", organization: "EY / Forage", title: "EY - Forensic and Integrity Services Job Simulation", issuer: "Forage", issuedDate: "Aug 2026" },
-    { id: "goldman-sachs-operations", organization: "Goldman Sachs / Forage", title: "Goldman Sachs Operations Job Simulation", issuer: "Forage", issuedDate: "Aug 2026", description: "Completed an industry-oriented operations simulation focused on financial services workflows and operational processes." },
-    { id: "microsoft-excel-intermediate", organization: "Microsoft", title: "Microsoft Certified Excel For Intermediate Level", issuer: "Microsoft", issuedDate: "Aug 2026" },
+    { id: "cbre-project-management", organization: "CBRE / Forage", title: "CBRE Project Management Job Simulation", issuer: "Forage", issuedDate: "Oct 2026", description: "Practised project planning and project management through a job simulation.", credentialId: "6a81765d6dfcb5ce710e0861", skills: ["Project Management", "Project Planning"] },
+    { id: "hack2innovate-national-grand-finale", organization: "Quick Heal", title: "Hack2Innovate CTF + Hackathon 2026 — National Grand Finale, 4th Place", issuer: "Quick Heal", issuedDate: "Sep 2026", description: "Secured 4th place at the national grand finale as part of Cyberleeks, representing Chandigarh University. Competed in cybersecurity challenges, CTF problem-solving, and hackathon challenges under time pressure.", skills: ["Cybersecurity", "CTF Problem-Solving", "Teamwork", "Hackathon"] },
+    { id: "ey-forensic-integrity-services", organization: "EY / Forage", title: "EY - Forensic and Integrity Services Job Simulation", issuer: "Forage", issuedDate: "Aug 2026", credentialId: "6a81bf0caa694bdf89b7a6f1", skills: ["Financial Integrity", "Forensic Analysis", "Project Management"] },
+    { id: "goldman-sachs-operations", organization: "Goldman Sachs / Forage", title: "Goldman Sachs Operations Job Simulation", issuer: "Forage", issuedDate: "Aug 2026", description: "Completed an industry-oriented operations simulation focused on financial services workflows and processes involved in facilitating ultra-high-net-worth transactions.", skills: ["Financial Operations", "Financial Reporting", "Microsoft Excel"] },
+    { id: "microsoft-excel-intermediate", organization: "Microsoft", title: "Microsoft Certified Excel For Intermediate Level", issuer: "Microsoft", issuedDate: "Aug 2026", skills: ["Microsoft Excel", "Business Analysis"] },
   ],
   currentlyBuilding: ["Quantitative equity research systems", "Probability and statistics", "Financial markets", "Backend architecture", "AI-powered systems"],
   education: [
