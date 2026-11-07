@@ -43,6 +43,8 @@ export function Hero() {
             </p>
             <div className="hero__actions mt-9 flex flex-wrap gap-3">
               <Button href="#projects">Explore Projects</Button>
+              <Button href="/services" variant="secondary">Professional Services</Button>
+              <Button href="/book" variant="secondary">Request a Meeting</Button>
               <Button href={contact.github} variant="secondary">
                 GitHub
               </Button>
