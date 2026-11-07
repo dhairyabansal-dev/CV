@@ -1,37 +1,24 @@
 # Dhairya Bansal — Portfolio & Professional Portal
 
-A Next.js portfolio for FinTech, quantitative finance, data analytics, and software systems, with a professional services catalogue and request portal.
+A Next.js portfolio for FinTech, quantitative finance, data analytics, and software systems, with a services catalogue, email-first enquiry form, and browser-local lead desk.
 
 ## Professional portal
 
 - `/services` — service catalogue.
 - `/book` — meeting requests and project enquiries.
-- `/api/requests` — validated server-side enquiry intake.
-- `/admin/login` and `/admin` — private CRM for reviewing enquiries and updating their status.
-- `supabase/schema.sql` — database table, narrow grants, and row-level security.
+- The public form validates required fields in the browser and prepares an email draft addressed to the portfolio contact. The visitor must press Send in their own email app.
+- `/admin` — personal lead desk with manual lead creation, status tracking, notes, search, filters, and JSON backup import/export.
+- No Supabase, database, server-side enquiry endpoint, external auth, or automated email/calendar pipeline is required.
 
-## Connect Supabase
+## Local lead desk limitations
 
-1. Create a Supabase project.
-2. Run `supabase/schema.sql` in the Supabase SQL Editor.
-3. Copy `.env.example` to `.env.local`.
-4. Set `SUPABASE_URL` and `SUPABASE_ANON_KEY` from Project Settings → API.
-5. Add those same variables to Vercel Project Settings → Environment Variables, then redeploy.
-6. Until Supabase is configured, public submissions cannot be stored and the form displays a direct-email fallback.
+The lead desk stores its records in the current browser profile using localStorage. Records do not sync between devices or visitors, and may be lost if browser storage is cleared. Export JSON backups regularly. Public visitors do not write directly into the lead desk; enquiries are received through email and can then be entered manually.
 
-Use only the anon/publishable key in this app. Never add a service-role key to Vercel for this feature or expose one in client-side code.
+The `/admin` route is not protected by server-side authentication. It is intended as a personal tool on a trusted device, not as a secure multi-user CRM. Do not store highly sensitive information in it.
 
-## Configure the CRM administrator
+## Environment
 
-1. Create the administrator account in Supabase Authentication.
-2. In Supabase's user management/admin tooling, set the account's **app metadata** to include `{"role":"admin"}`. Do not set this in user-editable metadata.
-3. Sign in at `/admin/login` using that Supabase Auth account.
-4. The server validates the Supabase user on CRM requests. The session token is held in an HttpOnly, SameSite=Strict cookie; inquiry reads and status changes use that user's JWT and are additionally restricted by database RLS.
-5. The CRM shows the latest 100 enquiries. Statuses are `new`, `reviewing`, `approved`, `declined`, and `completed`.
-
-The login and public form include same-origin checks and best-effort per-instance throttling. The in-memory throttle is not a global rate limiter across serverless instances; add a shared edge/database limiter before high-volume production use.
-
-Meeting requests are not confirmed bookings. Confirm date/time manually by email. Automated email notifications and calendar event creation are not configured.
+Only the optional server-side `GITHUB_TOKEN` is needed to raise the GitHub API rate limit. The portfolio works without it.
 
 ## GitHub-driven projects
 
