@@ -52,7 +52,7 @@ export async function POST(request: Request) {
       headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", Prefer: "return=minimal" },
       body: JSON.stringify({
         name, email, organization: organization || null, type, subject, message,
-        preferred_date: preferredDate, meeting_format: meetingFormat, status: "new",
+        preferred_date: preferredDate, meeting_format: meetingFormat,
       }),
       cache: "no-store",
     });
