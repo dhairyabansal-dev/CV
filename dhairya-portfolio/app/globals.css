@@ -410,3 +410,23 @@ button:focus-visible {
 .readme.prose code {
   font-family: var(--font-terminal);
 }
+
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 2.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.15rem;
+  background: var(--background);
+  padding: 0.75rem 0.85rem;
+  color: var(--foreground);
+  font: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.form-control::placeholder { color: color-mix(in srgb, var(--muted) 75%, transparent); }
+.form-control:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgb(186 148 78 / 0.1); }
+.form-control:disabled { cursor: not-allowed; opacity: 0.6; }
+select.form-control { color-scheme: dark; }
