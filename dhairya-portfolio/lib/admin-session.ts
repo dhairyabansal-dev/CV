@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-export const ADMIN_COOKIE = "__Host-portfolio_admin";
+export const ADMIN_COOKIE = "portfolio_admin_session";
 const SESSION_MAX_AGE = 60 * 60 * 4;
 
 type SupabaseUser = {
@@ -39,19 +39,23 @@ export async function getAdminSession() {
   const key = process.env.SUPABASE_ANON_KEY;
   if (!url || !key) return null;
 
-  const cookieStore = await cookies();
-  const token = cookieStore.get(ADMIN_COOKIE)?.value;
-  if (!token) return null;
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get(ADMIN_COOKIE)?.value;
+    if (!token) return null;
 
-  const response = await fetch(`${url}/auth/v1/user`, {
-    headers: { apikey: key, Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  });
-  if (!response.ok) return null;
+    const response = await fetch(`${url}/auth/v1/user`, {
+      headers: { apikey: key, Authorization: `Bearer ${token}` },
+      cache: "no-store",
+    });
+    if (!response.ok) return null;
 
-  const user = (await response.json()) as SupabaseUser;
-  if (user.app_metadata?.role !== "admin") return null;
-  return { token, userId: user.id };
+    const user = (await response.json()) as SupabaseUser;
+    if (user.app_metadata?.role !== "admin") return null;
+    return { token, userId: user.id };
+  } catch {
+    return null;
+  }
 }
 
 export function isSameOrigin(request: Request) {
