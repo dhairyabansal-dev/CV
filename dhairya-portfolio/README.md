@@ -1,61 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dhairya Bansal — Portfolio & Professional Portal
+
+A Next.js portfolio for FinTech, quantitative finance, data analytics, and software systems, with a professional services catalogue and request portal.
+
+## Professional portal setup
+
+The public site includes:
+- /services — service catalogue and project enquiry entry points.
+- /book — meeting requests and freelance/project enquiries.
+- /api/requests — validated server-side intake endpoint.
+- supabase/schema.sql — database table and row-level security policies for inquiry storage.
+
+### Connect Supabase
+
+1. Create a Supabase project.
+2. Open the SQL Editor and run supabase/schema.sql.
+3. Copy .env.example to .env.local.
+4. Set SUPABASE_URL and SUPABASE_ANON_KEY from Project Settings → API.
+5. Add the same variables to Vercel Project Settings → Environment Variables, then redeploy.
+6. Until Supabase is configured, the form shows a clear setup message and direct email fallback.
+
+Use only the anon/publishable key on the public request endpoint. Never add a service-role key to this website or expose it in client-side code.
+
+Meeting requests are requests, not confirmed calendar bookings. Confirm a date and time personally by email before treating a meeting as scheduled.
 
 ## GitHub-driven projects
 
-Public, non-fork repositories under `dhairyabansal-dev` are pulled live from
-the GitHub REST API and shown in the Projects and Build Log sections —
-`lib/github.ts` is the whole data layer. Publish a new public repo and it
-shows up here on its own, no edit to `portfolio-data.ts` required.
+Public, non-fork repositories under dhairyabansal-dev are pulled live from the GitHub REST API and shown in the Projects and Build Log sections. lib/github.ts is the data layer.
 
-- **Classification** (`lib/project-classification.ts`): optional per-repo
-  overrides for ticker, title, category, priority, and featured/hidden
-  state, keyed by repo name. A repo with no entry still shows up, with a
-  ticker/category generated from its name and primary language.
-- **Caching**: fetches are cached for 30 minutes via Next's `fetch`
-  `next.revalidate`, so GitHub changes show up automatically without a
-  redeploy, without hitting the API on every page load.
-- **Fallback**: if GitHub is unreachable, the Projects/Build Log sections
-  fall back to a small static project list (`fallbackProjects` in
-  `lib/project-classification.ts`) instead of going blank.
-- **Project pages**: `/projects/[repo]` renders a repo's README (via
-  `react-markdown` + `remark-gfm`, no raw HTML — same sanitization
-  guarantees either way) plus metadata, topics, and links.
-- **Auth**: works unauthenticated (60 req/hr shared GitHub limit). Set
-  `GITHUB_TOKEN` (see `.env.example`) to raise that to 5,000/hr — never
-  required, never exposed to the client, never returns private repos
-  regardless of token scope.
+- lib/project-classification.ts contains optional per-repository overrides.
+- GitHub fetches are cached for 30 minutes.
+- Static project data is used if GitHub is unavailable.
+- /projects/[repo] renders repository READMEs.
+- Optional GITHUB_TOKEN raises the API limit and remains server-only.
 
-## Getting Started
+## Local development
 
-First, run the development server:
+    cd dhairya-portfolio
+    npm install
+    npm run dev
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run npm run lint and npm run build before merging. Deployments are managed by the connected Vercel project.
