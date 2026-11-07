@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 
 type Status = "new" | "reviewing" | "approved" | "declined" | "completed";
 type Lead = {
@@ -80,8 +80,9 @@ export function AdminDashboard() {
     anchor.click(); URL.revokeObjectURL(url);
   }
 
-  async function importBackup(event: FormEvent<HTMLInputElement>) {
-    const file = event.currentTarget.files?.[0];
+  async function importBackup(event: ChangeEvent<HTMLInputElement>) {
+    const input = event.currentTarget;
+    const file = input.files?.[0];
     if (!file) return;
     try {
       const parsed: unknown = JSON.parse(await file.text());
@@ -90,7 +91,7 @@ export function AdminDashboard() {
     } catch (error) {
       window.alert(error instanceof Error ? error.message : "Unable to import backup.");
     }
-    event.currentTarget.value = "";
+    input.value = "";
   }
 
   if (!ready) return <p className="mt-10 text-sm text-[var(--muted)]">Opening your local workspace...</p>;
@@ -114,7 +115,7 @@ export function AdminDashboard() {
       <div className="flex items-center justify-between gap-3"><h3 className="text-xl font-semibold">Create a lead</h3><button type="button" className="font-mono text-xs text-[var(--muted)]" onClick={() => setShowForm(false)}>Close</button></div>
       <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Field label="Name" name="name" required /><Field label="Email" name="email" type="email" required /><Field label="Organization" name="organization" />
-        <label className="block"><span className="field-label">Lead type</span><select className="form-control" name="type"><option value="service">Project enquiry</option><option value="meeting">Meeting</option></select></label>
+        <label className="block"><span className="mb-2 block font-mono text-[0.68rem] uppercase tracking-wider text-[var(--muted)]">Lead type</span><select className="form-control" name="type"><option value="service">Project enquiry</option><option value="meeting">Meeting</option></select></label>
         <Field label="Subject" name="subject" required /><Field label="Preferred date" name="preferredDate" type="date" />
       </div>
       <label className="mt-4 block"><span className="field-label">Meeting format</span><select name="meetingFormat" className="form-control"><option>No preference</option><option>Google Meet</option><option>Phone</option><option>In person</option></select></label>
