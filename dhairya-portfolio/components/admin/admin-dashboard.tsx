@@ -97,7 +97,7 @@ export function AdminDashboard() {
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div><p className="terminal-text">{item.type === "meeting" ? "MEETING REQUEST" : "PROJECT ENQUIRY"} · {new Date(item.created_at).toLocaleString()}</p>
                 <h3 className="mt-2 text-xl font-semibold">{item.subject}</h3>
-                <p className="mt-1 text-sm text-[var(--muted)]">{item.name}{item.organization ? ` · ${item.organization}` : ""} · <a className="text-[var(--accent)] hover:underline" href={`mailto:${encodeURIComponent(item.email)}`}>{item.email}</a></p>
+                <p className="mt-1 text-sm text-[var(--muted)]">{item.name}{item.organization ? ` · ${item.organization}` : ""} · <a className="text-[var(--accent)] hover:underline" href={`mailto:${item.email}`}>{item.email}</a></p>
               </div>
               <label className="min-w-36"><span className="sr-only">Enquiry status</span><select aria-label={`Status for ${item.subject}`} className="form-control" value={item.status} disabled={updating === item.id} onChange={(event) => void updateStatus(item.id, event.target.value as Status)}>{statuses.map((status) => <option key={status} value={status}>{status}</option>)}</select></label>
             </div>
