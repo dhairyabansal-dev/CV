@@ -49,7 +49,7 @@ export async function POST(request: Request) {
 
     const response = await fetch(`${url}/rest/v1/inquiries`, {
       method: "POST",
-      headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", Prefer: "return=minimal" },
+      headers: { apikey: key, "Content-Type": "application/json", Prefer: "return=minimal" },
       body: JSON.stringify({
         name, email, organization: organization || null, type, subject, message,
         preferred_date: preferredDate, meeting_format: meetingFormat,
