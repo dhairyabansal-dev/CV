@@ -128,7 +128,7 @@ export function FinancialResearch() {
               </div>
 
               <p className="mt-5 border-t border-[var(--border)] pt-4 font-mono text-xs text-[var(--muted)]">
-                Independent research study · assumptions and source data available for review
+                Independent research study · assumptions and valuation date should accompany shared outputs
               </p>
             </article>
           ))}
