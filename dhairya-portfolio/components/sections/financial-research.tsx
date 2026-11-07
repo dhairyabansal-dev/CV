@@ -19,9 +19,16 @@ const services = [
   },
   {
     number: "03",
+    title: "Business & Financial Analysis",
+    description:
+      "Structured analysis of business performance, financial ratios, credit or operating drivers, and the implications for decisions.",
+    deliverables: ["Analysis workbook", "KPI summary", "Findings & limitations"],
+  },
+  {
+    number: "04",
     title: "Research & Reporting",
     description:
-      "Structured reports that explain the research question, supporting financial data, modelling approach, findings, and limitations.",
+      "Clear reports that explain the research question, supporting data, analytical approach, findings, assumptions, and limitations.",
     deliverables: ["Written report", "Supporting tables", "Key findings"],
   },
 ];
@@ -31,12 +38,12 @@ export function FinancialResearch() {
     <section id="financial-research" className="section">
       <Container>
         <SectionHeading
-          eyebrow="Excel / Financial Analysis"
+          eyebrow="Finance / Excel / Business Analysis"
           title="Financial research, built from the numbers."
-          description="I build Excel-based forecasts and valuation models, then turn the analysis into structured research reports. The work below reflects company-level analysis and valuation projects; original work samples can be shared on request."
+          description="My primary focus is financial modelling, company valuation, business analysis, and research reporting. The company studies below show the scope of my independent analysis; detailed workbooks and assumptions should be reviewed before relying on any valuation output."
         />
 
-        <div className="mt-10 grid gap-px border border-[var(--border)] bg-[var(--border)] md:grid-cols-3">
+        <div className="mt-10 grid gap-px border border-[var(--border)] bg-[var(--border)] sm:grid-cols-2 xl:grid-cols-4">
           {services.map((service) => (
             <article
               key={service.number}
@@ -72,13 +79,13 @@ export function FinancialResearch() {
           <div>
             <p className="terminal-text">Selected Company Research</p>
             <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-              Valuation & financial analysis
+              Company valuation & equity analysis
             </h3>
           </div>
           <p className="max-w-xl text-sm leading-6 text-[var(--muted)]">
-            Each project combines financial statement review with valuation
-            methods and scenario-based analysis. Outputs are estimates based on
-            stated assumptions, not guarantees of future performance.
+            Independent research studies covering financial statements, valuation
+            methods, scenarios, and sensitivity. Estimates depend on the
+            assumptions and valuation date; they are not investment advice.
           </p>
         </div>
 
@@ -106,8 +113,7 @@ export function FinancialResearch() {
               </div>
 
               <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
-                {project.description ||
-                  "Company-level financial research combining historical performance analysis with valuation methods and documented assumptions."}
+                {project.description}
               </p>
 
               <div className="mt-5 flex flex-wrap gap-2">
@@ -122,7 +128,7 @@ export function FinancialResearch() {
               </div>
 
               <p className="mt-5 border-t border-[var(--border)] pt-4 font-mono text-xs text-[var(--muted)]">
-                Excel model & research report available on request
+                Independent research study · assumptions and source data available for review
               </p>
             </article>
           ))}
@@ -130,14 +136,15 @@ export function FinancialResearch() {
 
         <div className="mt-8 flex flex-col gap-4 border border-[var(--border)] bg-[var(--panel)] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <div>
-            <p className="font-semibold">Need help with a financial research task?</p>
+            <p className="font-semibold">Have a financial analysis requirement?</p>
             <p className="mt-1 text-sm text-[var(--muted)]">
-              Open to short-term, clearly scoped modelling, forecasting, and reporting assignments.
+              Open to clearly scoped forecasting, valuation, business analysis,
+              and research assignments.
             </p>
           </div>
           <a
             className="button button--primary shrink-0"
-            href={`mailto:${portfolioData.contact.email}?subject=Financial%20Research%20or%20Modelling%20Project`}
+            href={`mailto:${portfolioData.contact.email}?subject=Financial%20Analysis%20Project`}
           >
             Discuss a Project
           </a>

@@ -11,12 +11,13 @@ export async function Projects() {
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            eyebrow="Featured Projects"
-            title="Systems, not assignments."
+            eyebrow="Selected Finance & Data Projects"
+            title="Financial questions, answered with analytical systems."
+            description="The first projects demonstrate lending analysis, financial data workflows, and quantitative risk research. Other engineering experiments remain available further down the list."
           />
           {!isLive ? (
             <p className="font-mono text-xs text-[var(--muted)]">
-              GitHub is temporarily unreachable — showing cached data.
+              GitHub is temporarily unreachable — showing curated fallback projects.
             </p>
           ) : null}
         </div>
