@@ -60,7 +60,7 @@ export function AdminDashboard() {
     const query = search.trim().toLowerCase();
     return leads
       .filter((lead) => (filter === "all" || lead.status === filter) &&
-        (!query || [lead.name, lead.email, lead.organization, lead.subject, lead.message]
+        (!query || [lead.name, lead.email, lead.organization, lead.subject, lead.message, lead.notes]
           .some((value) => value.toLowerCase().includes(query))))
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
   }, [filter, leads, search]);
@@ -72,6 +72,11 @@ export function AdminDashboard() {
     const form = event.currentTarget;
     const data = new FormData(form);
     const value = (key: string) => String(data.get(key) ?? "").trim();
+
+    if (leads.length >= MAX_IMPORT_LEADS) {
+      window.alert("The local lead desk is limited to 1,000 records. Export a backup before removing or archiving older records.");
+      return;
+    }
 
     const lead: Lead = {
       id: crypto.randomUUID(),
@@ -119,10 +124,13 @@ export function AdminDashboard() {
         throw new Error("This backup is invalid or contains too many records.");
       }
 
-      setLeads((current) => {
-        const importedIds = new Set(parsed.map((lead: Lead) => lead.id));
-        return [...parsed, ...current.filter((lead) => !importedIds.has(lead.id))];
-      });
+      const imported = parsed as Lead[];
+      const importedIds = new Set(imported.map((lead) => lead.id));
+      const merged = [...imported, ...leads.filter((lead) => !importedIds.has(lead.id))];
+      if (merged.length > MAX_IMPORT_LEADS) {
+        throw new Error("The combined lead desk cannot exceed 1,000 records. Export a backup and remove older records before importing.");
+      }
+      setLeads(merged);
     } catch (error) {
       window.alert(error instanceof Error ? error.message : "Unable to import backup.");
     } finally {
