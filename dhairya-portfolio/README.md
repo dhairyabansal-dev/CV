@@ -19,7 +19,16 @@ Set these server-side environment variables in Vercel (and in `.env.local` for l
 
 Do not prefix either variable with `NEXT_PUBLIC_`, commit real values, or send them to the browser. The server verifies the password and issues an eight-hour, HTTP-only, SameSite=Strict signed session cookie. The admin route redirects to `/admin/login` until both values are configured.
 
-The login endpoint rejects cross-origin requests, caps request bodies, uses timing-safe password comparison, and applies a best-effort limit of five failed attempts per 15-minute window per running server instance. Serverless instances do not share memory, so this is not a distributed rate limiter. For production, also configure a Vercel Firewall rate-limit rule for `POST /api/admin/session`; do not rely on the in-process fallback alone.
+The login endpoint rejects cross-origin requests, caps request bodies, uses timing-safe password comparison, and applies a best-effort limit of five failed attempts per 15-minute window per running server instance. Serverless instances do not share memory, so this is not a distributed rate limiter.
+
+For distributed protection, configure a Vercel Firewall rate-limit rule with:
+- Path equals `/api/admin/session`
+- Method equals `POST`
+- Key: client IP
+- Fixed window: 10 minutes
+- Limit: 5 requests, with the rule's block/429 response
+
+This rule is not provisioned automatically; review current Vercel Firewall pricing and publish it from the project dashboard. Do not rely on the in-process fallback alone.
 
 ## Local lead desk limitations
 
@@ -46,7 +55,10 @@ Public, non-fork repositories under `dhairyabansal-dev` are pulled live from the
 ```bash
 cd dhairya-portfolio
 npm install
+npm audit --omit=dev --audit-level=moderate
 npm run lint
 npm run build
 npm run dev
 ```
+
+GitHub Actions runs the production dependency audit, ESLint, and Next.js production build on relevant pushes and pull requests. The project pins the patched Next.js 16.4.6 release and overrides `postcss-selector-parser` to a patched 6.1.x version. The production dependency audit currently passes at the moderate threshold; development-tool advisories are tracked separately.
