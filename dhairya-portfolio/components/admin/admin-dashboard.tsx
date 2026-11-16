@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from "react";
+import { useMemo, useRef, useState, useSyncExternalStore, type ChangeEvent, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 type Status = "new" | "reviewing" | "approved" | "declined" | "completed";
 type Lead = {
@@ -22,39 +23,67 @@ const STORAGE_KEY = "dhairya-portfolio-local-crm-v1";
 const statuses: Status[] = ["new", "reviewing", "approved", "declined", "completed"];
 const MAX_IMPORT_BYTES = 2_000_000;
 const MAX_IMPORT_LEADS = 1_000;
+const STORAGE_ERROR_PREFIX = "__storage_error__:";
+const STORAGE_EVENT = "dhairya:crm-storage";
+
+let lastKnownSnapshot = "[]";
+let storageWriteFailed = false;
+
+function getLeadsSnapshot(): string {
+  if (storageWriteFailed) return STORAGE_ERROR_PREFIX + lastKnownSnapshot;
+
+  try {
+    lastKnownSnapshot = window.localStorage.getItem(STORAGE_KEY) ?? "[]";
+    return lastKnownSnapshot;
+  } catch {
+    return STORAGE_ERROR_PREFIX + lastKnownSnapshot;
+  }
+}
+
+function getServerLeadsSnapshot(): string {
+  return "[]";
+}
+
+function subscribeToLeads(onChange: () => void): () => void {
+  window.addEventListener("storage", onChange);
+  window.addEventListener(STORAGE_EVENT, onChange);
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener(STORAGE_EVENT, onChange);
+  };
+}
+
+function saveLeads(nextLeads: Lead[]): void {
+  lastKnownSnapshot = JSON.stringify(nextLeads);
+  try {
+    window.localStorage.setItem(STORAGE_KEY, lastKnownSnapshot);
+    storageWriteFailed = false;
+  } catch {
+    storageWriteFailed = true;
+  }
+  window.dispatchEvent(new Event(STORAGE_EVENT));
+}
+
+function parseLeads(snapshot: string): Lead[] {
+  try {
+    const parsed: unknown = JSON.parse(snapshot);
+    return Array.isArray(parsed) ? parsed.filter(isLead) : [];
+  } catch {
+    return [];
+  }
+}
 
 export function AdminDashboard() {
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [ready, setReady] = useState(false);
+  const snapshot = useSyncExternalStore(subscribeToLeads, getLeadsSnapshot, getServerLeadsSnapshot);
+  const storageError = snapshot.startsWith(STORAGE_ERROR_PREFIX);
+  const serialized = storageError ? snapshot.slice(STORAGE_ERROR_PREFIX.length) : snapshot;
+  const leads = useMemo(() => parseLeads(serialized), [serialized]);
+  const router = useRouter();
   const [filter, setFilter] = useState<"all" | Status>("all");
   const [search, setSearch] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const [storageError, setStorageError] = useState(false);
   const [logoutError, setLogoutError] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const parsed: unknown = JSON.parse(raw);
-        if (Array.isArray(parsed)) setLeads(parsed.filter(isLead));
-      }
-    } catch {
-      setStorageError(true);
-    }
-    setReady(true);
-  }, []);
-
-  useEffect(() => {
-    if (!ready) return;
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
-      setStorageError(false);
-    } catch {
-      setStorageError(true);
-    }
-  }, [leads, ready]);
 
   const visible = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -93,13 +122,13 @@ export function AdminDashboard() {
       notes: "",
     };
 
-    setLeads((current) => [lead, ...current]);
+    saveLeads([lead, ...leads]);
     form.reset();
     setShowForm(false);
   }
 
   function update(id: string, patch: Partial<Lead>) {
-    setLeads((current) => current.map((lead) => lead.id === id ? { ...lead, ...patch } : lead));
+    saveLeads(leads.map((lead) => lead.id === id ? { ...lead, ...patch } : lead));
   }
 
   function exportBackup() {
@@ -130,7 +159,7 @@ export function AdminDashboard() {
       if (merged.length > MAX_IMPORT_LEADS) {
         throw new Error("The combined lead desk cannot exceed 1,000 records. Export a backup and remove older records before importing.");
       }
-      setLeads(merged);
+      saveLeads(merged);
     } catch (error) {
       window.alert(error instanceof Error ? error.message : "Unable to import backup.");
     } finally {
@@ -147,13 +176,11 @@ export function AdminDashboard() {
         cache: "no-store",
       });
       if (!response.ok) throw new Error("Sign-out failed.");
-      window.location.assign("/admin/login");
+      router.replace("/admin/login");
     } catch {
       setLogoutError("Unable to sign out. Close this browser session and try again.");
     }
   }
-
-  if (!ready) return <p className="mt-10 text-sm text-[var(--muted)]">Opening your local workspace...</p>;
 
   return (
     <div className="mt-10">
@@ -296,7 +323,7 @@ export function AdminDashboard() {
                     className="font-mono text-xs text-red-400 hover:underline"
                     onClick={() => {
                       if (window.confirm("Delete this lead from this browser?")) {
-                        setLeads((current) => current.filter((item) => item.id !== lead.id));
+                        saveLeads(leads.filter((item) => item.id !== lead.id));
                       }
                     }}
                   >

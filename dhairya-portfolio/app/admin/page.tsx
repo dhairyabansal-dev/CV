@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Navigation } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
@@ -30,9 +31,9 @@ export default async function AdminPage() {
                 A private, browser-local CRM for tracking conversations, project enquiries and follow-ups.
               </p>
             </div>
-            <a href="/" className="font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)]">
+            <Link href="/" className="font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)]">
               ← View portfolio
-            </a>
+            </Link>
           </div>
           <AdminDashboard />
         </Container>

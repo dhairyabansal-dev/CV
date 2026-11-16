@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Navigation } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
 import { Container } from "@/components/ui/container";
@@ -15,13 +16,13 @@ export default function ServicesPage(){return <><Navigation/><main>
  <section className="section !border-t-0"><Container><p className="terminal-text">professional_services / 01</p><div className="mt-5 max-w-3xl">
  <h1 className="text-4xl font-semibold tracking-[-0.05em] sm:text-6xl">Research, analysis & systems that solve real problems.</h1>
  <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">Independent project support across finance, data, business research, and Python automation. Every engagement starts with a clear brief, scope, and deliverables.</p>
- <div className="mt-8 flex flex-wrap gap-3"><a className="button button--primary" href="/book?type=service">Discuss a project ↗</a><a className="button button--secondary" href="/#projects">View relevant work</a></div></div></Container></section>
+ <div className="mt-8 flex flex-wrap gap-3"><Link className="button button--primary" href="/book?type=service">Discuss a project ↗</Link><Link className="button button--secondary" href="/#projects">View relevant work</Link></div></div></Container></section>
  <section className="section"><Container><SectionHeading eyebrow="What I can help with" title="Service catalogue" description="Engagements are scoped individually based on the problem, data availability, timeline, and expected output."/>
  <div className="mt-12 grid gap-4 lg:grid-cols-2">{services.map((s)=><article className="border border-[var(--border)] bg-[var(--panel)] p-6 sm:p-8" key={s.code}>
  <div className="flex justify-between gap-4"><p className="terminal-text">{s.code}</p><span className="font-mono text-xs text-[var(--muted)]">PROJECT-BASED</span></div>
  <h2 className="mt-5 text-2xl font-semibold tracking-tight">{s.title}</h2><p className="mt-3 leading-7 text-[var(--muted)]">{s.description}</p>
  <p className="terminal-text mt-7">Potential deliverables</p><ul className="mt-3 space-y-2 text-sm">{s.items.map((item)=><li key={item} className="flex gap-3"><span className="text-[var(--accent)]">—</span>{item}</li>)}</ul>
- <a className="mt-8 inline-flex font-mono text-xs font-semibold uppercase tracking-wider text-[var(--accent)] hover:text-[var(--accent-strong)]" href={`/book?type=service&subject=${encodeURIComponent(s.title)}`}>Enquire about this service ↗</a>
+ <Link className="mt-8 inline-flex font-mono text-xs font-semibold uppercase tracking-wider text-[var(--accent)] hover:text-[var(--accent-strong)]" href={`/book?type=service&subject=${encodeURIComponent(s.title)}`}>Enquire about this service ↗</Link>
  </article>)}</div>
  <p className="mt-8 max-w-3xl text-sm leading-6 text-[var(--muted)]">Quantitative research services are research and analytical support, not investment recommendations or promises of trading performance. Scope, data access, and deliverables are agreed before work begins.</p>
  </Container></section></main><Footer/></>;}

@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 export function AdminLoginForm() {
+  const router = useRouter();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,7 +29,7 @@ export function AdminLoginForm() {
         return;
       }
 
-      window.location.assign("/admin");
+      router.replace("/admin");
     } catch {
       setError("The sign-in service could not be reached. Please try again.");
     } finally {

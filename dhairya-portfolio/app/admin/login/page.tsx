@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Navigation } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
 import { Container } from "@/components/ui/container";
@@ -23,9 +24,9 @@ export default function AdminLoginPage() {
               This private area is available only after the server-side admin password has been configured.
             </p>
             <AdminLoginForm />
-            <a href="/" className="mt-6 inline-flex font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)]">
+            <Link href="/" className="mt-6 inline-flex font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)]">
               ← Return to portfolio
-            </a>
+            </Link>
           </div>
         </Container>
       </main>
