@@ -2,15 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { portfolioData } from "@/lib/portfolio-data";
 
-const financeModules = [
-  "DCF.VALUATION()",
-  "REVENUE.FORECAST()",
-  "FINANCIAL.STATEMENTS()",
-  "SCENARIO.ANALYSIS()",
-  "CREDIT.ANALYSIS()",
-  "PORTFOLIO.RISK()",
-  "MARKET.DATA()",
-  "EXCEL.MODEL()",
+const systemCommands = [
+  "MONTE_CARLO()",
+  "BLACK_SCHOLES()",
+  "DCF_MODEL()",
+  "RISK_ENGINE.RUN()",
+  "BLOCKCHAIN.SCAN()",
+  "PORTFOLIO.OPTIMIZE()",
+  "SCHEDULE.BUILD()",
+  "MARKET.ANALYZE()",
 ];
 
 export function Hero() {
@@ -25,7 +25,7 @@ export function Hero() {
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)] lg:gap-20">
           <div className="hero__content">
-            <p className="terminal-text hero__label">dhairya_bansal / finance.log</p>
+            <p className="terminal-text hero__label">dhairya_bansal / systems.log</p>
             <h1
               className="hero__title mt-5 max-w-3xl text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl lg:text-7xl"
               id="hero-title"
@@ -42,32 +42,31 @@ export function Hero() {
               {owner.supportingDescription}
             </p>
             <div className="hero__actions mt-9 flex flex-wrap gap-3">
-              <Button href="#financial-research">Explore Financial Work</Button>
-              <Button href="#contact" variant="secondary">
-                Discuss a Project
-              </Button>
+              <Button href="#projects">Explore Projects</Button>
+              <Button href="/services" variant="secondary">Professional Services</Button>
+              <Button href="/book" variant="secondary">Request a Meeting</Button>
               <Button href={contact.github} variant="secondary">
                 GitHub
               </Button>
             </div>
           </div>
           <aside
-            aria-label="Financial analysis capabilities"
+            aria-label="Portfolio system concepts"
             className="hero__modules border border-[var(--border)] bg-[var(--panel)] p-5 sm:p-6"
           >
             <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
-              <p className="terminal-text">financial toolkit</p>
+              <p className="terminal-text">system modules</p>
               <span className="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-[var(--muted)]">
-                research
+                local
               </span>
             </div>
             <ul className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {financeModules.map((module) => (
+              {systemCommands.map((command) => (
                 <li
                   className="hero__module border border-[var(--border)] px-3 py-2 font-mono text-xs tracking-wide text-[var(--foreground)]"
-                  key={module}
+                  key={command}
                 >
-                  {module}
+                  {command}
                 </li>
               ))}
             </ul>
