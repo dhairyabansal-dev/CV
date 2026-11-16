@@ -21,22 +21,22 @@ export default function Home() {
           <Hero />
         </Reveal>
         <Reveal>
+          <FinancialResearch />
+        </Reveal>
+        <Reveal>
           <About />
         </Reveal>
         <Reveal>
           <Capabilities />
         </Reveal>
         <Reveal>
-          <FinancialResearch />
-        </Reveal>
-        <Reveal>
           <Projects />
         </Reveal>
         <Reveal>
-          <CurrentlyBuilding />
+          <Education />
         </Reveal>
         <Reveal>
-          <Education />
+          <CurrentlyBuilding />
         </Reveal>
         <Reveal>
           <BuildLog />

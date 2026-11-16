@@ -52,7 +52,7 @@ export function Hero() {
           </div>
           <aside
             aria-label="Portfolio system concepts"
-          className="hero__modules border border-[var(--border)] bg-[var(--panel)] p-5 sm:p-6"
+            className="hero__modules border border-[var(--border)] bg-[var(--panel)] p-5 sm:p-6"
           >
             <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
               <p className="terminal-text">system modules</p>

@@ -7,41 +7,63 @@ import {
   isAdminAuthConfigured,
   verifyAdminPassword,
 } from "@/lib/admin-auth";
+import {
+  clearFailedLogins,
+  getLoginRateLimit,
+  recordFailedLogin,
+} from "@/lib/admin-rate-limit";
 
 export const runtime = "nodejs";
 
+const NO_STORE = {
+  "Cache-Control": "no-store, max-age=0",
+  Pragma: "no-cache",
+};
+
+function json(body: unknown, status = 200, headers: Record<string, string> = {}) {
+  return NextResponse.json(body, {
+    status,
+    headers: { ...NO_STORE, ...headers },
+  });
+}
+
 function isSameOrigin(request: NextRequest): boolean {
   const origin = request.headers.get("origin");
-  if (origin && origin !== request.nextUrl.origin) return false;
+  if (!origin || origin !== request.nextUrl.origin) return false;
   return request.headers.get("sec-fetch-site") !== "cross-site";
 }
 
 export async function POST(request: NextRequest) {
   if (!isSameOrigin(request)) {
-    return NextResponse.json({ error: "Cross-origin requests are not allowed." }, { status: 403 });
+    return json({ error: "Cross-origin requests are not allowed." }, 403);
   }
 
   if (!isAdminAuthConfigured()) {
-    return NextResponse.json(
+    return json(
       { error: "Admin access is not configured. Add ADMIN_PASSWORD and ADMIN_SESSION_SECRET to the Vercel project environment." },
-      { status: 503, headers: { "Cache-Control": "no-store" } },
+      503,
     );
   }
 
-  if (!request.headers.get("content-type")?.toLowerCase().includes("application/json")) {
-    return NextResponse.json({ error: "Expected a JSON request." }, { status: 415 });
+  if (request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() !== "application/json") {
+    return json({ error: "Expected a JSON request." }, 415);
   }
 
   const contentLength = Number(request.headers.get("content-length") ?? "0");
   if (Number.isFinite(contentLength) && contentLength > 2048) {
-    return NextResponse.json({ error: "Request is too large." }, { status: 413 });
+    return json({ error: "Request is too large." }, 413);
+  }
+
+  const rawBody = await request.text();
+  if (new TextEncoder().encode(rawBody).byteLength > 2048) {
+    return json({ error: "Request is too large." }, 413);
   }
 
   let body: unknown;
   try {
-    body = await request.json();
+    body = JSON.parse(rawBody);
   } catch {
-    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+    return json({ error: "Invalid request body." }, 400);
   }
 
   const password = body && typeof body === "object" && "password" in body
@@ -49,25 +71,41 @@ export async function POST(request: NextRequest) {
     : undefined;
 
   if (typeof password !== "string" || password.length === 0 || password.length > 1024) {
-    return NextResponse.json({ error: "Enter your admin password." }, { status: 400 });
+    return json({ error: "Enter your admin password." }, 400);
+  }
+
+  const rateLimit = getLoginRateLimit(request);
+  if (rateLimit.limited) {
+    return json(
+      { error: "Too many failed sign-in attempts. Wait before trying again." },
+      429,
+      { "Retry-After": String(rateLimit.retryAfterSeconds) },
+    );
   }
 
   if (!verifyAdminPassword(password)) {
-    return NextResponse.json({ error: "Incorrect password." }, { status: 401, headers: { "Cache-Control": "no-store" } });
+    recordFailedLogin(request);
+    return json({ error: "Incorrect password." }, 401);
   }
 
+  clearFailedLogins(request);
+
   const expiresAt = Date.now() + ADMIN_SESSION_TTL_SECONDS * 1000;
-  const response = NextResponse.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
-  response.cookies.set(ADMIN_SESSION_COOKIE, createAdminSessionToken(expiresAt), adminSessionCookieOptions());
+  const response = json({ ok: true });
+  response.cookies.set(
+    ADMIN_SESSION_COOKIE,
+    createAdminSessionToken(expiresAt),
+    adminSessionCookieOptions(),
+  );
   return response;
 }
 
 export async function DELETE(request: NextRequest) {
   if (!isSameOrigin(request)) {
-    return NextResponse.json({ error: "Cross-origin requests are not allowed." }, { status: 403 });
+    return json({ error: "Cross-origin requests are not allowed." }, 403);
   }
 
-  const response = NextResponse.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
+  const response = json({ ok: true });
   response.cookies.set(ADMIN_SESSION_COOKIE, "", {
     ...adminSessionCookieOptions(),
     maxAge: 0,
