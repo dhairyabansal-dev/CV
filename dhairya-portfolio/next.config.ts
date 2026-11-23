@@ -22,11 +22,11 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/admin/:path*",
-        headers: [...securityHeaders, ...noStoreHeaders],
+        headers: noStoreHeaders,
       },
       {
         source: "/api/admin/:path*",
-        headers: [...securityHeaders, ...noStoreHeaders],
+        headers: noStoreHeaders,
       },
     ];
   },
