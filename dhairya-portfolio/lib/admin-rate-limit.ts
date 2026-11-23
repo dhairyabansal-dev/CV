@@ -17,7 +17,9 @@ const attempts = new Map<string, AttemptWindow>();
 function clientKey(request: NextRequest): string {
   const realIp = request.headers.get("x-real-ip")?.trim();
   const forwardedFor = request.headers.get("x-forwarded-for");
-  const forwardedIp = forwardedFor?.split(",").map((value) => value.trim()).filter(Boolean).at(-1);
+  // X-Forwarded-For is ordered client-first. Use the first non-empty entry as a
+  // fallback; choosing the last entry can collapse unrelated visitors onto a proxy IP.
+  const forwardedIp = forwardedFor?.split(",").map((value) => value.trim()).find(Boolean);
   const address = realIp || forwardedIp || "unknown";
 
   return createHash("sha256").update(address).digest("hex");
